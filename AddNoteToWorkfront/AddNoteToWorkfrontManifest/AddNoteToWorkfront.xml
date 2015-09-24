@@ -3,10 +3,10 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="MailApp">
   <Id>8fe80a54-2c1f-49b2-bf49-ab0fecb78999</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>[Provider name]</ProviderName>
+  <ProviderName>Workfront Inc.</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="AddNoteToWorkfront" />
-  <Description DefaultValue="AddNoteToWorkfront"/>
+  <DisplayName DefaultValue="Add Note To Workfront" />
+  <Description DefaultValue="This Outlook add-In allows to add new update to Workfront note thread using information from notification e-mail."/>
   <Hosts>
     <Host Name="Mailbox" />
   </Hosts>
