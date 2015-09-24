@@ -23,9 +23,24 @@
       </DesktopSettings>
     </Form>
   </FormSettings>
-  <Permissions>ReadItem</Permissions>
-  <Rule xsi:type="RuleCollection" Mode="Or">
-    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+  <Permissions>ReadWriteMailbox</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="And">
+    <Rule xsi:type="ItemHasRegularExpressionMatch"
+          PropertyName="BodyAsHTML"
+          RegExName="CommentOnProject"
+          RegExValue="[\w-:./]+(?=/project/view\?ID=\w{32}&amp;amp;commentID=\w{32}&amp;amp;activeTab=tab-project-updates&amp;amp;showCommentBox=true)"
+          IgnoreCase="true"/>
+
+    <Rule xsi:type="ItemHasRegularExpressionMatch"
+          PropertyName="BodyAsPlaintext"
+          RegExName="RefNumber"
+          RegExValue="REF# \d{2,8}"/>
   </Rule>
+  <!--<Rule xsi:type="RuleCollection" Mode="And">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+    <Rule xsi:type="ItemHasRegularExpressionMatch" RegExName="VideoURL"
+      RegExValue="/watch\?v=[a-zA-Z0-9_-]{11}"
+      PropertyName="BodyAsHTML"/>
+  </Rule>-->
   <DisableEntityHighlighting>false</DisableEntityHighlighting>
 </OfficeApp>
