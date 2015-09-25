@@ -1,11 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddNoteToWorkfront", "AddNoteToWorkfront\AddNoteToWorkfront.csproj", "{213E002D-0281-43AF-BD0A-D19BC59F6F88}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddNoteToWorkfrontWeb", "AddNoteToWorkfrontWeb\AddNoteToWorkfrontWeb.csproj", "{B119D77E-66FB-44AA-A127-6BB74AA0D10E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtTask.OutlookAddin.Utilities", "AtTask.OutlookAddin.Utilities\AtTask.OutlookAddin.Utilities.csproj", "{27DC456F-3696-4BED-8207-44E1A725E25F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtTask.OutlookAddIn.Domain", "AtTask.OutlookAddIn.Domain\AtTask.OutlookAddIn.Domain.csproj", "{F3AD40F8-4F35-4FD0-A58F-D5AD997B83D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workfront.OutlookAddIn.Infrastructure", "Workfront.OutlookAddIn.Infrastructure\Workfront.OutlookAddIn.Infrastructure.csproj", "{2E90F14C-C46B-4A80-A8D0-28D7CB750E6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{98BBBC3C-541D-4CE7-B160-DEA81328E536}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtTask.OutlookAddIn.Assets", "AtTask.OutlookAddIn.Assets\AtTask.OutlookAddIn.Assets.csproj", "{EF210344-539C-4CED-AE66-F73617239E97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtTask.OutlookAddIn.StreamApi", "AtTask.OutlookAddIn.StreamApi\AtTask.OutlookAddIn.StreamApi.csproj", "{5172CC94-1409-418B-82D0-9EA08471E6B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +40,26 @@ Global
 		{B119D77E-66FB-44AA-A127-6BB74AA0D10E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B119D77E-66FB-44AA-A127-6BB74AA0D10E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B119D77E-66FB-44AA-A127-6BB74AA0D10E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27DC456F-3696-4BED-8207-44E1A725E25F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27DC456F-3696-4BED-8207-44E1A725E25F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27DC456F-3696-4BED-8207-44E1A725E25F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27DC456F-3696-4BED-8207-44E1A725E25F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3AD40F8-4F35-4FD0-A58F-D5AD997B83D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3AD40F8-4F35-4FD0-A58F-D5AD997B83D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3AD40F8-4F35-4FD0-A58F-D5AD997B83D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3AD40F8-4F35-4FD0-A58F-D5AD997B83D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E90F14C-C46B-4A80-A8D0-28D7CB750E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E90F14C-C46B-4A80-A8D0-28D7CB750E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E90F14C-C46B-4A80-A8D0-28D7CB750E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E90F14C-C46B-4A80-A8D0-28D7CB750E6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF210344-539C-4CED-AE66-F73617239E97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF210344-539C-4CED-AE66-F73617239E97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF210344-539C-4CED-AE66-F73617239E97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF210344-539C-4CED-AE66-F73617239E97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5172CC94-1409-418B-82D0-9EA08471E6B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5172CC94-1409-418B-82D0-9EA08471E6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5172CC94-1409-418B-82D0-9EA08471E6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5172CC94-1409-418B-82D0-9EA08471E6B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

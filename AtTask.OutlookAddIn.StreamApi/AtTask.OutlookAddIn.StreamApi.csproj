@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5172CC94-1409-418B-82D0-9EA08471E6B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtTask.OutlookAddIn.StreamApi</RootNamespace>
+    <AssemblyName>AtTask.OutlookAddIn.StreamApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>bfa78d3a</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\WorkfrontSnk.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Connector\Impl\ApiCommand.cs" />
+    <Compile Include="Connector\Impl\ApiCommandAction.cs" />
+    <Compile Include="Connector\Impl\ApiCommandApiMetadata.cs" />
+    <Compile Include="Connector\Impl\ApiCommandApiServerInfo.cs" />
+    <Compile Include="Connector\Impl\ApiCommandBatch.cs" />
+    <Compile Include="Connector\Impl\ApiCommandCount.cs" />
+    <Compile Include="Connector\Impl\ApiCommandCreate.cs" />
+    <Compile Include="Connector\Impl\ApiCommandDelete.cs" />
+    <Compile Include="Connector\Impl\ApiCommandGet.cs" />
+    <Compile Include="Connector\Impl\ApiCommandLogin.cs" />
+    <Compile Include="Connector\Impl\ApiCommandLoginViaSessionId.cs" />
+    <Compile Include="Connector\Impl\ApiCommandLogout.cs" />
+    <Compile Include="Connector\Impl\ApiCommandMetadata.cs" />
+    <Compile Include="Connector\Impl\ApiCommandReport.cs" />
+    <Compile Include="Connector\Impl\ApiCommandSearch.cs" />
+    <Compile Include="Connector\Impl\ApiCommandSolrSearch.cs" />
+    <Compile Include="Connector\Impl\ApiCommandUpdate.cs" />
+    <Compile Include="Connector\Impl\ApiConstants.cs" />
+    <Compile Include="Connector\Impl\ItemCount.cs" />
+    <Compile Include="Connector\Impl\JsonEntityRoot.cs" />
+    <Compile Include="Connector\Impl\ResponseJsonStatusCode.cs" />
+    <Compile Include="Connector\Impl\SolrRoot.cs" />
+    <Compile Include="Connector\Service\SolrSearchBuilder.cs" />
+    <Compile Include="Connector\Impl\StreamApiConnector.cs" />
+    <Compile Include="Connector\Impl\StreamApiEnumConverter.cs" />
+    <Compile Include="Connector\Impl\StreamApiPropertyNamesContractResolver.cs" />
+    <Compile Include="Connector\Service\IBatchQuery.cs" />
+    <Compile Include="Connector\Service\IStreamApiConnector.cs" />
+    <Compile Include="Connector\Service\StreamApiConnectorFactory.cs" />
+    <Compile Include="Connector\Service\StreamApiEndpoint.cs" />
+    <Compile Include="Connector\Service\StreamApiHeader.cs" />
+    <Compile Include="Connector\Service\StringPair.cs" />
+    <Compile Include="Helpers\WebHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StreamApiException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AtTask.OutlookAddIn.Domain\AtTask.OutlookAddIn.Domain.csproj">
+      <Project>{f3ad40f8-4f35-4fd0-a58f-d5ad997b83d6}</Project>
+      <Name>AtTask.OutlookAddIn.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtTask.OutlookAddin.Utilities\AtTask.OutlookAddin.Utilities.csproj">
+      <Project>{27dc456f-3696-4bed-8207-44e1a725e25f}</Project>
+      <Name>AtTask.OutlookAddin.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

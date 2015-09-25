@@ -1,0 +1,51 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AtTask.OutlookAddIn.Assets" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AppDataFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AtTask\Add-in</Value>
+    </Setting>
+    <Setting Name="StreamAPIVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">5.0</Value>
+    </Setting>
+    <Setting Name="ReporterHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://hub.attask.com/</Value>
+    </Setting>
+    <Setting Name="ReporterUsername" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crashreporter</Value>
+    </Setting>
+    <Setting Name="ReporterPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">lovephones</Value>
+    </Setting>
+    <Setting Name="CrashProjectID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4da441be000085afb119b3b7df6af21b</Value>
+    </Setting>
+    <Setting Name="CrashCategoryID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4da81dd700009732cc888c862216fea9</Value>
+    </Setting>
+    <Setting Name="IsProduction" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoUpdateVersionXml" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://op-updates.s3.amazonaws.com/version-info3.xml</Value>
+    </Setting>
+    <Setting Name="AutoUpdateOnlyRelease" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoUpdateCheckDelay" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="AutoUpdateCheckPeriodicity" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">86400</Value>
+    </Setting>
+    <Setting Name="DeskMetricsAppID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">c8913fc01e674900b7522b02d98f9590</Value>
+    </Setting>
+    <Setting Name="ProductVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4.0.0.0</Value>
+    </Setting>
+    <Setting Name="EqatecAppID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">90f3b2b028334ac5beec6e086faf7776</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
