@@ -165,14 +165,18 @@ namespace AtTask.OutlookAddIn.StreamApi.Connector.Impl
         {
             CheckInited();
             ApiCommandLogin cmd = new ApiCommandLogin(this, username, password, apiSessionTimeout, streamApiHeader);
-            return await cmd.ExecuteAsync(token);
+            LoginInfo = await cmd.ExecuteAsync(token);
+
+            return LoginInfo;
         }
 
         public async Task<LoginInfo> LoginAsync(string sessionID, StreamApiHeader streamApiHeader = null, CancellationToken token = new CancellationToken())
         {
             CheckInited();
             ApiCommandLogin cmd = new ApiCommandLogin(this, sessionID, streamApiHeader);
-            return await cmd.ExecuteAsync(token);
+            LoginInfo = await cmd.ExecuteAsync(token);
+
+            return LoginInfo;
         }
 
         public LoginInfo LoginByOtherSessionID(string username, string otherSessionID, StreamApiHeader streamApiHeader = null)

@@ -49,6 +49,7 @@
     <Content Include="AddNoteToWorkfrontManifest\AddNoteToWorkfront.xml">
       <OpcRelationship>manifest-oemanifest</OpcRelationship>
     </Content>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AddNoteToWorkfrontWeb\AddNoteToWorkfrontWeb.csproj">

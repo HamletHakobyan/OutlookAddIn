@@ -24,15 +24,24 @@
             Host: host
         };
 
-        $.post('../../api/authentication/login', connectionInfo, function(data, status) {
-            $('#jsonResponse').text(status);
-        });
+        $.post('../../api/authentication/login', connectionInfo)
+            .done(function(data, status) {
+                $('#jsonResponse').text('Data: ' + JSON.stringify(data) + '\nStatus: ' + status);
+            })
+            .fail(function(data, status) {
+                $('#jsonResponse').text('Data: ' + JSON.stringify(data) + '\nStatus: ' + status);
+
+           });
     }
 
     function doMyWork() {
-        $.post('../../api/get/mywork', function (data, status) {
-            $('#jsonResponse').text(JSON.stringify(data));
-        });
+        $.post('../../api/get/mywork')
+            .done(function(data, status) {
+                $('#jsonResponse').text('Data: ' + JSON.stringify(data) + '\nStatus: ' + status);
+            })
+            .fail(function(data, status) {
+                $('#jsonResponse').text('Data: ' + JSON.stringify(data) + '\nStatus: ' + status);
+            });
     }
 
     function getHeaders() {

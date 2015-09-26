@@ -11,6 +11,7 @@ using AtTask.OutlookAddIn.Domain.Model;
 using AtTask.OutlookAddIn.StreamApi;
 using AtTask.OutlookAddIn.StreamApi.Connector.Service;
 using AtTask.OutlookAddIn.Utilities;
+using Newtonsoft.Json;
 
 namespace AddNoteToWorkfrontWeb.Controllers
 {
@@ -53,13 +54,31 @@ namespace AddNoteToWorkfrontWeb.Controllers
                 message.Headers.AddCookies(new[] { cookieSession, cookieHost });
                 return message;
             }
-            catch (StreamApiException ex)
+            catch (Exception e)
             {
-                return Request.CreateErrorResponse((HttpStatusCode?)ex.Error.Code ?? HttpStatusCode.InternalServerError, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+                var resEx = e;
+                var status = HttpStatusCode.BadRequest;
+                var ex = e as StreamApiException;
+                if (ex != null)
+                {
+                    status = HttpStatusCode.BadRequest;
+                    resEx = ex;
+                    var wex = ex.WebException;
+                    if (wex != null)
+                    {
+                        if (wex.Status == WebExceptionStatus.ProtocolError)
+                        {
+                            var response = wex.Response as HttpWebResponse;
+                            if (response != null)
+                            {
+                                status = response.StatusCode;
+                                resEx = wex;
+                            }
+                        }
+                    }
+                }
+
+                return Request.CreateErrorResponse(status, resEx);
             }
         }
     }
