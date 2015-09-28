@@ -45,6 +45,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttachmentData.cs" />
     <Compile Include="AtTaskException.cs" />
     <Compile Include="ClosableViewModelBase.cs" />
     <Compile Include="ConnectionSettings.cs" />

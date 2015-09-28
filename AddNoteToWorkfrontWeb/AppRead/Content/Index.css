@@ -1,0 +1,71 @@
+﻿/* Page-specific styling */
+
+#details {
+    margin-left: 15px;
+}
+
+    #details th {
+        text-align: left;
+        padding-right: 10px;
+    }
+
+#from {
+    cursor: pointer;
+    color: #336699;
+}
+
+    #from:focus, #from:hover, #from:active {
+        color: #4ea2df;
+    }
+
+.hidden {
+    display: none;
+}
+
+.overlay {
+    background-color: #808080;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.flex-container{
+    display: flex;
+}
+.fixed{
+    flex-grow:initial;
+}
+.flex-item{
+    flex-grow: 2;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.left-pane {
+    margin: 20px;
+    background: #9a9a9a; 
+}
+
+#container .column {
+    padding-top: 1em;
+    text-align: justify;
+    padding-bottom: 1001em;
+    margin-bottom: -1000em;
+    position: relative;
+    float: left;
+}
+#left {
+    background: #66F;
+    width: 180px;
+    padding: 0 10px;
+    right: 240px;
+    margin-left: -100%;
+}

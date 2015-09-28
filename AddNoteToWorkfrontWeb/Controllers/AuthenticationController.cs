@@ -34,7 +34,7 @@ namespace AddNoteToWorkfrontWeb.Controllers
             return cookie.Split('=')[1];
         }
 
-        // GET: api/Login
+        // POST: api/Login
         public async Task<HttpResponseMessage> Login([FromBody]ConnectionInfo info)
         {
             var connector = GetApiConnector(info);
