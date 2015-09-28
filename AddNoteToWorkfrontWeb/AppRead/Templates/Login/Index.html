@@ -1,1 +1,25 @@
-﻿<div></div>
+﻿<form class="form-horizontal flex-item">
+    <div class="form-group">
+        <label for="username" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="username" placeholder="username">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="password" placeholder="Password" required ng-minlength="8"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="url" class="col-sm-2 control-label">Host</label>
+        <div class="col-sm-4">
+            <input type="url" class="form-control" id="url" placeholder="yourcompany.attask-ondemand.com" required ng-model="user.facebook_url">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <button type="submit" class="btn btn-default">Sign in</button>
+        </div>
+    </div>
+</form>

@@ -1,1 +1,1 @@
-﻿angular.module('workfront-addin', []);
+﻿
