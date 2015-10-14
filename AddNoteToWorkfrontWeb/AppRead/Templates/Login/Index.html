@@ -1,42 +1,48 @@
 ﻿    <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal fade container" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Login</h4>
+            <!-- Modal content-->
+            <div class="modal-content container">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="login" class="form-horizontal">
+                            <div class="form-group">
+                                <div class="row">
+                                    <label for="username" class="control-label col-md-2 col-sm-2 col-xs-2">Username</label>
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <input type="text" class="form-control" id="username" placeholder="username" required ng-model="username">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <label for="password" class="control-label col-md-2 col-sm-2 col-xs-2">Password</label>
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <input type="password" class="form-control" id="password" placeholder="Password" required ng-minlength="8" ng-model="password" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <label for="url" class="control-label control-label col-md-2 col-sm-2 col-xs-2">Host</label>
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <input type="url" class="form-control" id="url" placeholder="yourcompany.attask-ondemand.com" required ng-model="url">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+                                        <button type="submit" class="btn btn-rpimary" ng-disabled="login.$invalid">Sign in</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
             </div>
-            <div class="modal-body">
-                <form name="login" class="form-horizontal">
-                    <div class="container">
-                        <div class="form-group col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-2 container">
-                            <label for="username" class="control-label">Email</label>
-                            <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2">
-                                <input type="text" class="form-control" id="username" placeholder="username" required ng-model="username">
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-2 container">
-                            <label for="password" class="control-label">Password</label>
-                            <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2">
-                                <input type="password" class="form-control" id="password" placeholder="Password" required ng-minlength="8" ng-model="password" />
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-2 container">
-                            <label for="url" class="control-label">Host</label>
-                            <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2">
-                                <input type="url" class="form-control" id="url" placeholder="yourcompany.attask-ondemand.com" required ng-model="url">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-6">
-                                <button type="submit" class="btn btn-priority" ng-disabled="login.$invalid">Sign in</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+
         </div>
-
     </div>
-</div>
