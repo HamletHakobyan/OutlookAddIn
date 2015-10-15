@@ -94,16 +94,18 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppRead\Controllers\login-index-controller.js" />
-    <Content Include="AppRead\Controllers\update-index-controller.js" />
+    <Content Include="AppRead\Controllers\login.controller.js" />
+    <Content Include="AppRead\Controllers\update.controller.js" />
     <Content Include="AppRead\Index.html" />
     <Content Include="AppRead\Content\newspinner.css" />
     <Content Include="AppRead\Content\select.css" />
     <Content Include="AppRead\Content\spinner.css" />
     <Content Include="AppRead\Scripts\Routes.js" />
-    <Content Include="AppRead\Templates\Login\Index.html" />
-    <Content Include="AppRead\Templates\Update\AsyncTemplate.html" />
-    <Content Include="AppRead\Templates\Update\Index.html" />
+    <Content Include="AppRead\Templates\Login\login.view.html" />
+    <Content Include="AppRead\Templates\modalContainer.html" />
+    <Content Include="AppRead\Templates\Update\asyncTemplate.html" />
+    <Content Include="AppRead\Templates\Update\popupTemplate.html" />
+    <Content Include="AppRead\Templates\Update\update.view.html" />
     <Content Include="Global.asax" />
     <Content Include="AppRead\Images\logo-workfront.png" />
     <Content Include="AppRead\Images\Workfront.png" />
@@ -118,7 +120,7 @@
   <ItemGroup>
     <None Include="AppRead\Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="AppRead\Content\App.css" />
-    <Content Include="AppRead\Scripts\App.js" />
+    <Content Include="AppRead\App.js" />
     <Content Include="AppRead\Content\Index.css" />
     <Content Include="AppRead\Scripts\Init.js" />
     <Content Include="AppRead\Content\Office.css" />

@@ -1,4 +1,4 @@
 ﻿<div class="typeahead-group-header" ng-if="match.model.is_first">{{match.model.group_name}}</div>
 <a>
-    <span ng-bind-html="match.model.address | uibTypeaheadHighlight:query"></span>
+    <span class="ellipsis" ng-bind-html="match.model.name | uibTypeaheadHighlight:query"></span>
 </a>

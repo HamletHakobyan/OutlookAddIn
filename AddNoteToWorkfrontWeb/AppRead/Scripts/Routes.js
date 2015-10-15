@@ -7,11 +7,11 @@
     function routeConfigure($routeProvider, $locationProvider) {
         $routeProvider
             .when('/login', {
-                templateUrl: 'templates/login/index.html',
-                controller: 'LoginController'
+                templateUrl: 'templates/modalContainer.html',
+                controller: 'ModalController'
             })
             .when('/update', {
-                templateUrl: 'templates/update/index.html',
+                templateUrl: 'templates/update/update.view.html',
                 controller: 'UpdateController'
             })
             .otherwise({ redirectTo: '/update' });
