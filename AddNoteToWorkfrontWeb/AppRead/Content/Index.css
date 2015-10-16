@@ -130,3 +130,24 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.refresh {
+    display: -ms-inline-grid;
+    -ms-align-content: flex-end;
+    -webkit-align-content: flex-end;
+    align-content: flex-end;
+    position: absolute;
+    left: -12px;
+    top: 10px;
+}
+
+.pill {
+    -ms-border-radius: 16px;
+    border-radius: 16px;
+    background: red;
+    padding: 4px 7px;
+}
+
+.white, .white a {
+  color: #fff;
+}

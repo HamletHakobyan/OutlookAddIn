@@ -101,6 +101,8 @@
     <Content Include="AppRead\Content\select.css" />
     <Content Include="AppRead\Content\spinner.css" />
     <Content Include="AppRead\Scripts\Routes.js" />
+    <Content Include="AppRead\Services\entityService.js" />
+    <Content Include="AppRead\Services\loginService.js" />
     <Content Include="AppRead\Templates\Login\login.view.html" />
     <Content Include="AppRead\Templates\modalContainer.html" />
     <Content Include="AppRead\Templates\Update\asyncTemplate.html" />

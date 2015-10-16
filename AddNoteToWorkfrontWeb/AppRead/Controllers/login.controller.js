@@ -1,39 +1,43 @@
 ﻿angular.module('workfront-addin')
-.controller('LoginController', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
-    $scope.username = '';
-    $scope.password = '';
-    $scope.url = '';
+    .controller('LoginController', [
+        '$scope', '$modalInstance', '$location', 'loginService', function($scope, $modalInstance, $location, loginService) {
+            $scope.username = '';
+            $scope.password = '';
+            $scope.url = '';
+            $scope.isError = 'false';
+            $scope.error = '';
 
-    $scope.signIn = function () {
-        var cnnInfo = {
-            Username: $scope.username,
-            Password: $scope.password,
-            Host: $scope.url
-        };
+            $scope.signIn = function() {
+                var cnnInfo = {
+                    Username: $scope.username,
+                    Password: $scope.password,
+                    Host: $scope.url
+                };
 
-        doLogin(cnnInfo);
+                $scope.isError = false;
+                $scope.error = '';
 
-    }
-
-    var doLogin = function (connectionInfo) {
-        $(".loading").show(1000);
-
-        $.post("../../api/authentication/login", connectionInfo)
-            .done(function (data, status) {
-                $("#jsonResponse").text("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-            })
-            .fail(function (data, status) {
-                $("#jsonResponse").text("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-            })
-            .always(function () {
-                $(".loading").hide(1000);
+                loginService.doLogin(cnnInfo).then(function (response) {
+                        $modalInstance.close();
+                        $location.path('/update');
+                    },
+                    function(response) {
+                        $scope.isError = true;
+                        if (response.data && response.data.ExceptionMessage) {
+                            $scope.error = response.data.ExceptionMessage;
+                        } else {
+                            $scope.error = response.statusText;
+                        }
+                    });
+            }
+        }
+    ])
+    .controller('ModalController', [
+        '$scope', '$uibModal', function($scope, $uibModal) {
+            $uibModal.open({
+                templateUrl: 'templates/login/login.view.html',
+                controller: 'LoginController',
+                backdrop: 'static'
             });
-    }
-}])
-.controller('ModalController', ['$scope', '$uibModal', function ($scope, $uibModal) {
-        $uibModal.open({
-            templateUrl: 'templates/login/login.view.html',
-            controller: 'LoginController',
-            backdrop: 'static'
-        });
-    }]);
+        }
+    ]);

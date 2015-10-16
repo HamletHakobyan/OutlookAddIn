@@ -1,8 +1,8 @@
 ﻿(function() {
     'use strict';
 
-    var app = angular.module('workfront-addin', ['ngRoute']);
-    var conf = app.config(['$routeProvider', '$locationProvider', routeConfigure]);
+    angular.module('workfront-addin')
+        .config(['$routeProvider', '$locationProvider', routeConfigure]);
 
     function routeConfigure($routeProvider, $locationProvider) {
         $routeProvider
@@ -15,7 +15,7 @@
                 controller: 'UpdateController'
             })
             .otherwise({ redirectTo: '/update' });
-    };
+    }
 })();
 //conf.run(['$rootScope', '$location', eventHandler]);
 

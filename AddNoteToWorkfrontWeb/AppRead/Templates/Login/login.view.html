@@ -26,11 +26,14 @@
                     <input type="url" class="form-control" id="url" placeholder="https://yourcompany.attask-ondemand.com" required ng-model="url">
                 </div>
             </div>
+            <div>
+                <span class="col-md-8 col-sm-8 col-xs-8" ng-show="isError" ng-model="error">{{error}}</span>
+            </div>
         </div>
         <div class="form-group">
             <div class="row">
                 <div class="col-md-offset-2 col-md-2 col-sm-2 col-xs-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-                    <button type="submit" class="btn btn-primary" ng-disabled="login.$invalid">Sign in</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="login.$invalid">Login</button>
                 </div>
             </div>
         </div>
