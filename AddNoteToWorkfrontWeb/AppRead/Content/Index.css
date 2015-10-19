@@ -144,10 +144,39 @@
 .pill {
     -ms-border-radius: 16px;
     border-radius: 16px;
+    max-width: 120px;
     background: red;
-    padding: 4px 7px;
+    padding: 3px 7px;
+    margin: 2px;
+    overflow: hidden;
+    font-size: 11px;
+    color: white;
+    white-space: nowrap;
+    -moz-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 
-.white, .white a {
-  color: #fff;
+a.white, a.white:hover, a.white:link, a.white:visited, a.white:active {
+    color: #fff;
+    padding: 1px 0 0;
+    text-decoration: none !important;
+}
+
+a.white:hover {
+    cursor: pointer;
+}
+
+.form-text {
+    color: #78677f;
+}
+
+.pill-container {
+    display: inline-flex;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
 }

@@ -1,17 +1,23 @@
-﻿(function() {
+﻿(function (angular) {
     'use strict';
 
-    angular.module('workfront-addin')
-    .factory('loginService', [
-        '$http', function ($http) {
-            var doLogin = function (connectionInfo) {
-                var data = $.param(connectionInfo);
-                return $http.post("../../api/authentication/login", data);
-            };
+    function loginService($http) {
 
-            return {
-                doLogin: doLogin
-            };
+        function doLogin(connectionInfo) {
+            var data = $.param(connectionInfo);
+            return $http.post("../../api/authentication/login", data);
         }
-    ]);
-})();
+
+        // return service
+        var service = {};
+
+        service.doLogin = doLogin;
+        return service;
+    };
+
+    angular.module('workfront-addin')
+        .factory('loginService', loginService);
+    loginService.$inject = ['$http'];
+
+
+})(window.angular);

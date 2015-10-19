@@ -32,21 +32,6 @@
             });
     }
 
-    function doGetObjects() {
-        $(".loading").show(1000);
-        var searchCriteria = $('#searchCriteria').val();
-        $.post("../../api/get/containssearch", { '': searchCriteria })
-            .done(function(data, status) {
-                $("#jsonResponse").text("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-            })
-            .fail(function(data, status) {
-                $("#jsonResponse").text("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-            })
-            .always(function() {
-                $(".loading").hide(1000);
-            });
-    }
-
     function getRequestDataPromise() {
         var itemId = Office.context.mailbox.item.itemId;
         var ewsUrl = Office.context.mailbox.ewsUrl;
@@ -155,5 +140,8 @@
 
     // The Office initialize function must be run each time a new page is loaded
     Office.initialize = function(reason) {
+        $('#addin').ready(function() {
+            angular.bootstrap(document, ['workfront-addin']);
+        });
     };
 })();

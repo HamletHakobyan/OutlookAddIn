@@ -1,8 +1,9 @@
 ﻿<div class="row">
-    <p class="update-text">Serach and select the Workfront item you would like to update</p>
+    <h4 class="form-text col-md-5 col-xs-5">Serach and select the Workfront item you would like to update</h4>
+    <h4 class="form-text col-md-offset-1 col-xs-offset-1 col-md-6 col-xs-6">Update</h4>
 </div>
 <div class="row">
-    <div class="col-md-6 col-md-offset-1 col-xs-6 col-xs-offset-1" style="display: inline">
+    <div class="col-md-5 col-xs-5">
         <input type="text" ng-model="asyncSelected" placeholder="Search..."
                uib-typeahead="entity as entity.name for entity in getEntities($viewValue)"
                typeahead-template-url="templates/update/asyncTemplate.html" typeahead-loading="isLoading" typeahead-no-results="noResults"
@@ -12,17 +13,16 @@
         <div ng-show="noResults">
             <i class="glyphicon glyphicon-remove"></i> No match found
         </div>
-
-
+        <div class="row" ng-show="hasAttachments()">
+            <h4 class="form-text col-md-12 col-xs-12">Attachments</h4>
+        </div>
+        <div class="row container-fluid" ng-show="hasAttachments()">
+            <div class="col-md-12 col-xs-12 pill-container">
+                <div class="pill" title="{{file.name}}" ng-repeat="file in getAttachments">
+                    <a class="glyphicon glyphicon-remove white" ng-click="removeItem(file)"></a> {{file.name}}
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<div class="row">
-    <p class="update-text">Update</p>
-    <textarea rows="10"></textarea>
-</div>
-<div class="row">
-    <p class="update-text">Attachments</p>
-    <div class="row col-md-6 col-md-offset-1 col-xs-6 col-xs-offset-1" ng-repeat="file in attachments" style="display: inline-flex">
-        <div class="pill white"><a class="glyphicon glyphicon-remove white" ng-click="removeItem($index)"></a> {{file.name}}</div>
-    </div>
+    <textarea rows="14" class="col-md-5 col-md-offset-1 col-xs-5 col-xs-offset-1" ng-model="getBody"></textarea>
 </div>

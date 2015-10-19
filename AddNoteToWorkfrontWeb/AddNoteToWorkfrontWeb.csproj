@@ -101,6 +101,8 @@
     <Content Include="AppRead\Content\select.css" />
     <Content Include="AppRead\Content\spinner.css" />
     <Content Include="AppRead\Scripts\Routes.js" />
+    <Content Include="AppRead\Services\attachmentsService.js" />
+    <Content Include="AppRead\Services\currentItemService.js" />
     <Content Include="AppRead\Services\entityService.js" />
     <Content Include="AppRead\Services\loginService.js" />
     <Content Include="AppRead\Templates\Login\login.view.html" />

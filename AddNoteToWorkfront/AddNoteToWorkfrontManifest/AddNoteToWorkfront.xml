@@ -25,11 +25,7 @@
   </FormSettings>
   <Permissions>ReadWriteMailbox</Permissions>
   <Rule xsi:type="RuleCollection" Mode="And">
-    <Rule xsi:type="ItemHasRegularExpressionMatch"
-          PropertyName="BodyAsHTML"
-          RegExName="CommentOnProject"
-          RegExValue="[\w-:./]+(?=/project/view\?ID=\w{32}&amp;amp;commentID=\w{32}&amp;amp;activeTab=tab-project-updates&amp;amp;showCommentBox=true)"
-          IgnoreCase="true"/>
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
   </Rule>
   <DisableEntityHighlighting>false</DisableEntityHighlighting>
 </OfficeApp>
