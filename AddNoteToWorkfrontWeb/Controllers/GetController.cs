@@ -78,6 +78,11 @@ namespace AddNoteToWorkfrontWeb.Controllers
             }
         }
 
+        public async TPL.Task<NamedEntityBase> UpdateEntity([FromBody] UpdateData updateData)
+        {
+            throw new NotImplementedException();
+        }
+
         public async TPL.Task<IEnumerable<NamedEntityBase>> ContainsSearch([FromBody]string searchText)
         {
             var token = new CancellationToken();
@@ -138,7 +143,7 @@ namespace AddNoteToWorkfrontWeb.Controllers
             }
         }
 
-        public async TPL.Task<List<FileHandle>> AttachmentHandles([FromBody] EwsCredentials credentials)
+        private async TPL.Task<List<FileHandle>> AttachmentHandles( EwsCredentials credentials)
         {
 
             var service = new ExchangeService(ExchangeVersion.Exchange2013_SP1);
@@ -464,6 +469,17 @@ namespace AddNoteToWorkfrontWeb.Controllers
         private const string CriteriaLimit = "$$LIMIT";
     }
 
+    public class UpdateData
+    {
+        public EwsCredentials EwsCredentials { get; set; }
+    }
+
+    public class Attachments
+    {
+        
+    }
+
+
     public class FileHandle
     {
         public string Handle { get; set; }
@@ -475,6 +491,5 @@ namespace AddNoteToWorkfrontWeb.Controllers
         public string AttachmentToken { get; set; }
         public string EwsId { get; set; }
         public string EwsUrl { get; set; }
-        public string UserIdentityToken { get; set; }
     }
 }

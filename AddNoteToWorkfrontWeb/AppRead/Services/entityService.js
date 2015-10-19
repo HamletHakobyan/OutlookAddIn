@@ -55,10 +55,20 @@
             return defered.promise;
         };
 
+        var updateEntity = function(updateData) {
+            $http.post('../../api/get/updateEntity', updateData)
+                .then(function(response) {
+
+                }, function(error) {
+
+                });
+        }
+
         // return service
         var service = {};
 
         service.getEntities = getEntities;
+        service.updateEntity = updateEntity;
         return service;
     }
 

@@ -94,6 +94,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppRead\Content\privateSwitch.css" />
     <Content Include="AppRead\Controllers\login.controller.js" />
     <Content Include="AppRead\Controllers\update.controller.js" />
     <Content Include="AppRead\Index.html" />

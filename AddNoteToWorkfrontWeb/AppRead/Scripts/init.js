@@ -36,8 +36,8 @@
         var itemId = Office.context.mailbox.item.itemId;
         var ewsUrl = Office.context.mailbox.ewsUrl;
 
-        var getCallbackTokenAsync = $.Deferred();
-        var getUserIdentityTokenAsync = $.Deferred();
+        var getCallbackTokenAsync = $.defer();
+        var getUserIdentityTokenAsync = $.defer();
 
         Office.context.mailbox.getCallbackTokenAsync(function(data) {
             getCallbackTokenAsync.resolve(data);
@@ -46,7 +46,7 @@
             getUserIdentityTokenAsync.resolve(data);
         });
 
-        return $.when(getCallbackTokenAsync.promise(), getUserIdentityTokenAsync.promise()).then(function(callbackToken, userIdentityToken) {
+        return $.when(getCallbackTokenAsync.promise, getUserIdentityTokenAsync.promise).then(function(callbackToken, userIdentityToken) {
             var postData = {
                 AttachmentToken: callbackToken.value,
                 UserIdentityToken: userIdentityToken.value,

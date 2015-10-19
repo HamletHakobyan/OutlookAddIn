@@ -68,6 +68,10 @@
             return Office.context.mailbox.item;
         }
 
+        function getEwsUrl() {
+            return Office.context.mailbox.ewsUrl;
+        }
+
         // service interface
 
         function getAttachments() {
@@ -85,11 +89,25 @@
                 } else {
                     defered.reject(result.error);
                 }
-                
             });
 
             return defered.promise;
         }
+
+        function getCallbackTokenAsync() {
+            var getCallbackTokenAsync = $.defer();
+
+            getMailbox().getCallbackTokenAsync(function(data) {
+                if (result.status === 'succeeded') {
+                    getCallbackTokenAsync.resolve(result.value);
+                } else {
+                    getCallbackTokenAsync.reject(result.error);
+                }
+            });
+
+            return getCallbackTokenAsync.promise;
+        }
+
 
         //return service;
 
@@ -98,6 +116,9 @@
         // add service methods
         service.getAttachments = getAttachments;
         service.getBody = getBody;
+        service.getEwsUrl = getEwsUrl;
+        service.getItemId = getItemId;
+        service.getCallbackTokenAsync = getCallbackTokenAsync;
 
         return service;
     }
