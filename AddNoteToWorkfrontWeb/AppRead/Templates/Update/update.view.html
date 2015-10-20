@@ -29,13 +29,12 @@
 <div class="row">
     <hr />
 </div>
-<div class="row container-fluid" style="margin-top: 10px; margin-bottom: 20px;">
+<div class="row" style="margin-top: 10px; margin-bottom: 20px;">
     <div class="col-md-2 col-sm-2 col-xs-2 col-sm-offset-6 col-xs-offset-6">
         <div class="onoffswitch">
-            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked ng-checked="isPublic">
-            <label class="onoffswitch-label" for="myonoffswitch">
-                <span class="onoffswitch-inner"></span>
-                <span class="onoffswitch-switch"></span>
+            <label class="privateSwitch">
+                <input type="checkbox" name="privateSwitch" ng-model="isPrivate">
+                <span></span>
             </label>
         </div>
     </div>

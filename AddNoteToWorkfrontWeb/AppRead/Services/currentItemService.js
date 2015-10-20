@@ -56,6 +56,12 @@
             return result;
         }
 
+        function getItem() {
+            return Office.context.mailbox.item;
+        }
+
+        // service interface
+
         function getItemId() {
             return Office.context.mailbox.item.itemId;
         }
@@ -64,15 +70,9 @@
             return Office.context.mailbox;
         }
 
-        function getItem() {
-            return Office.context.mailbox.item;
-        }
-
         function getEwsUrl() {
             return Office.context.mailbox.ewsUrl;
         }
-
-        // service interface
 
         function getAttachments() {
             return getItem().attachments;
@@ -94,18 +94,18 @@
             return defered.promise;
         }
 
-        function getCallbackTokenAsync() {
-            var getCallbackTokenAsync = $.defer();
+        function getTokenAsync() {
+            var defered = $q.defer();
 
-            getMailbox().getCallbackTokenAsync(function(data) {
+            getMailbox().getCallbackTokenAsync(function(result) {
                 if (result.status === 'succeeded') {
-                    getCallbackTokenAsync.resolve(result.value);
+                    defered.resolve(result.value);
                 } else {
-                    getCallbackTokenAsync.reject(result.error);
+                    defered.reject(result.error);
                 }
             });
 
-            return getCallbackTokenAsync.promise;
+            return defered.promise;
         }
 
 
@@ -118,7 +118,7 @@
         service.getBody = getBody;
         service.getEwsUrl = getEwsUrl;
         service.getItemId = getItemId;
-        service.getCallbackTokenAsync = getCallbackTokenAsync;
+        service.getTokenAsync = getTokenAsync;
 
         return service;
     }

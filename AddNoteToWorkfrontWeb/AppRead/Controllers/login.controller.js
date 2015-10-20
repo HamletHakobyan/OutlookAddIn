@@ -35,19 +35,9 @@
         }
     }
 
-    function modalController($scope, $uibModal) {
-        $uibModal.open({
-            templateUrl: 'templates/login/login.view.html',
-            controller: 'LoginController',
-            backdrop: 'static'
-        });
-    }
-
     angular.module('workfront-addin')
-        .controller('LoginController', loginController)
-        .controller('ModalController', modalController);
+        .controller('LoginController', loginController);
 
 
     loginController.$inject = ['$scope', '$modalInstance', '$location', 'loginService'];
-    modalController.$inject = ['$scope', '$uibModal'];
 })(window.angular);

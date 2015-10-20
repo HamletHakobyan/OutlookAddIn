@@ -78,9 +78,43 @@ namespace AddNoteToWorkfrontWeb.Controllers
             }
         }
 
-        public async TPL.Task<NamedEntityBase> UpdateEntity([FromBody] UpdateData updateData)
+        private EntityBase EntityBaseFactory(string id, string objCode)
         {
-            throw new NotImplementedException();
+            switch (objCode)
+            {
+                case Project.ObjCodeString:
+                    return new Project { ID = id, ObjCode = objCode };
+                case Task.ObjCodeString:
+                    return new Task { ID = id, ObjCode = objCode };
+                case OpTask.ObjCodeString:
+                    return new OpTask { ID = id, ObjCode = objCode };
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
+        public async TPL.Task<EntityBase> UpdateEntity([FromBody]UpdateData updateData)
+        {
+            var note = updateData.Note;
+            var updateEntity = EntityBaseFactory(note.ObjID, note.NoteObjCode);
+
+            var connector = await GetApiConnectorAsync();
+
+            try
+            {
+                var newNote = await connector.CreateNoteAsync(updateData.Note, CancellationToken.None);
+
+                var handles = await AttachmentHandles(updateData.EwsCredentials, updateData.Attachments);
+
+                await connector.UploadDocsAsync(updateEntity, handles, CancellationToken.None);
+
+                return (EntityBase)newNote;
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         public async TPL.Task<IEnumerable<NamedEntityBase>> ContainsSearch([FromBody]string searchText)
@@ -143,18 +177,20 @@ namespace AddNoteToWorkfrontWeb.Controllers
             }
         }
 
-        private async TPL.Task<List<FileHandle>> AttachmentHandles( EwsCredentials credentials)
+        private async TPL.Task<List<FileHandle>> AttachmentHandles(EwsCredentials credentials, List<AttachmentInfo> attachmentInfos)
         {
 
             var service = new ExchangeService(ExchangeVersion.Exchange2013_SP1);
             service.Url = new Uri(credentials.EwsUrl);
             service.Credentials = new OAuthCredentials(credentials.AttachmentToken);
             var tasks = GetAttachmentsFromEmail(service, new ItemId(credentials.EwsId))
+                .Where(s => attachmentInfos.Any(a => a.Id == s.Id))
                 .Select(async s =>
                 {
                     var uploadFileAsync = await FileUploadService.UploadFileAsync(s);
                     var handle = await GetHandleFromResponse(uploadFileAsync);
-                    return new FileHandle {Handle = handle, FileName = s.FileName};
+                    s.Stream.Dispose();
+                    return new FileHandle { Handle = handle, FileName = s.FileName };
                 });
 
             var strings = await TPL.Task.WhenAll(tasks);
@@ -186,16 +222,17 @@ namespace AddNoteToWorkfrontWeb.Controllers
 
             // Eetrieve the mime content and attachments collection.
             // This method results in an GetItem call to EWS.
-            message.Load(new PropertySet(ItemSchema.MimeContent,ItemSchema.Attachments));
+            message.Load(new PropertySet(ItemSchema.MimeContent, ItemSchema.Attachments));
 
             var mimeContent = message.MimeContent;
 
-            yield return new AttachmentData
-            {
-                Stream = new MemoryStream(mimeContent.Content),
-                FileName = "email.eml",
-                ContentType = "message/rfc822"
-            };
+                yield return new AttachmentData
+                {
+                    Id = Guid.Empty.ToString("D"),
+                    Stream = new MemoryStream(mimeContent.Content),
+                    FileName = "current.eml",
+                    ContentType = "message/rfc822"
+                };
             // Bind to an existing message item and retrieve the attachments collection.
             // This method results in an GetItem call to EWS.
 
@@ -203,17 +240,19 @@ namespace AddNoteToWorkfrontWeb.Controllers
             // Iterate through the attachments collection and load each attachment.
             foreach (Attachment attachment in message.Attachments)
             {
-                var stream = new MemoryStream();
                 if (attachment is FileAttachment)
                 {
                     FileAttachment fileAttachment = attachment as FileAttachment;
 
+                    var stream = new MemoryStream();
                     // Load the attachment into a file.
                     // This call results in a GetAttachment call to EWS.
                     fileAttachment.Load(stream);
+                    stream.Seek(0, SeekOrigin.Begin);
                     yield return
                         new AttachmentData
                         {
+                            Id = fileAttachment.Id,
                             Stream = stream,
                             FileName = fileAttachment.FileName ?? fileAttachment.Name,
                             ContentType = fileAttachment.ContentType
@@ -471,12 +510,24 @@ namespace AddNoteToWorkfrontWeb.Controllers
 
     public class UpdateData
     {
+        public Note Note { get; set; }
+        public List<AttachmentInfo> Attachments { get; set; }
         public EwsCredentials EwsCredentials { get; set; }
     }
 
-    public class Attachments
+    public class AttachmentInfo
     {
-        
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public AttachmentType AttachmentType { get; set; }
+        public string ContentType { get; set; }
+        public bool IsInline { get; set; }
+    }
+
+    public enum AttachmentType
+    {
+        file,
+        item
     }
 
 
@@ -491,5 +542,50 @@ namespace AddNoteToWorkfrontWeb.Controllers
         public string AttachmentToken { get; set; }
         public string EwsId { get; set; }
         public string EwsUrl { get; set; }
+    }
+
+    internal static class Extensions
+    {
+        public static async TPL.Task<Note> CreateNoteAsync(this IStreamApiConnector streamApiConnector, Note note, CancellationToken token)
+        {
+            try
+            {
+                return await streamApiConnector.CreateAsync(note, null, token);
+            }
+            catch (StreamApiException ex)
+            {
+                throw new AtTaskException(ex);
+            }
+        }
+
+        public static async TPL.Task UploadDocsAsync<T>(this IStreamApiConnector connector, T entity, IEnumerable<FileHandle> fileHanfles, CancellationToken token) where T : EntityBase
+        {
+            var tasks = new List<TPL.Task<Document>>();
+            foreach (var fileHande in fileHanfles)
+            {
+                Document document = PrepareDocument(entity, fileHande.Handle, fileHande.FileName);
+                document.ObjID = entity.ID;
+                document.DocObjCode = entity.ObjCode;
+                tasks.Add(connector.CreateAsync(document, null, token));
+            }
+
+            await TPL.Task.WhenAll(tasks).ConfigureAwait(false);
+        }
+
+        private static Document PrepareDocument(EntityBase entity, string handle, string fileName)
+        {
+            Document document = new Document();
+            document.Name = fileName;
+            document.Handle = handle;
+            document.DocObjCode = entity.ObjCode;
+            document.ObjID = entity.ID;
+
+            DocumentVersion docVersion = new DocumentVersion();
+            docVersion.Version = "1";
+            docVersion.FileName = fileName;
+            document.CurrentVersion = docVersion;
+
+            return document;
+        }
     }
 }

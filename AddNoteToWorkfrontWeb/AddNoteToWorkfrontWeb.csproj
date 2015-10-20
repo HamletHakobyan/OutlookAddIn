@@ -97,6 +97,8 @@
     <Content Include="AppRead\Content\privateSwitch.css" />
     <Content Include="AppRead\Controllers\login.controller.js" />
     <Content Include="AppRead\Controllers\update.controller.js" />
+    <Content Include="AppRead\Images\Locked24.png" />
+    <Content Include="AppRead\Images\Unlocked24.png" />
     <Content Include="AppRead\Index.html" />
     <Content Include="AppRead\Content\newspinner.css" />
     <Content Include="AppRead\Content\select.css" />

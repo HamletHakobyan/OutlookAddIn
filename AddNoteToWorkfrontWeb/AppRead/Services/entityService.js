@@ -11,7 +11,7 @@
             } else if (item.ObjCode === 'OPTASK') {
                 objName = 'Issues';
             } else {
-                objName = 'Unknowon Object';
+                objName = 'Unknown Object';
             }
 
             item.obj_name = objName;
@@ -42,6 +42,7 @@
                                     id: e.ID,
                                     name: e.Name,
                                     group_name: e.obj_name,
+                                    objCode: e.ObjCode,
                                     is_first: e.is_first
                                 };
                             })
@@ -55,8 +56,9 @@
             return defered.promise;
         };
 
-        var updateEntity = function(updateData) {
-            $http.post('../../api/get/updateEntity', updateData)
+        var updateEntity = function (updateData) {
+            var data = $.param(updateData);
+            $http.post('../../api/get/updateEntity', data)
                 .then(function(response) {
 
                 }, function(error) {

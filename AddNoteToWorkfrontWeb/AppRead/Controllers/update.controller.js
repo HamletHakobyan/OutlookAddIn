@@ -12,7 +12,7 @@
                 '"' + data.body + '"';
         };
 
-        $scope.selected = {};
+        $scope.selected = undefined;
 
         $scope.getEntities = function (term) {
             if ($.cookie('workfront-session')) {
@@ -42,7 +42,7 @@
 
         $scope.getAttachments = (function () {
             var attacments = [];
-            attacments.push({ id: EMPTYGUID, name: 'current.eml' });
+            attacments.push({ id: EMPTYGUID, name: 'current.eml', attachmentType: 'file', contentType: 'message/rfc822', isInline: false});
             $.merge(attacments, currentItemService.getAttachments());
             return attacments;
         })();
@@ -61,26 +61,33 @@
             $scope.getBody = buildUpdate(data);
         });
 
-        $scope.isPublic = false;
-
-        var note = {
-            OwnerID: '',
-            IsPrivate: !$scope.isPublic,
-            NoteText: $scope.getBody,
-            entryDate: new Date(),
-            ObjID: $scope.selected.id,
-            NoteObjCode: $scope.selected.objCode
-        };
-
+        $scope.isPrivate = true;
 
         function updateEntityAsync(data) {
+            var note = {
+                OwnerID: '$$USER.ID',
+                IsPrivate: $scope.isPrivate,
+                NoteText: $scope.getBody,
+                EntryDate: new Date().toISOString(),
+                ObjID: $scope.selected.id,
+                NoteObjCode: $scope.selected.objCode
+            };
+
             var fullNote = {
-                note: note,
-                attachments: $scope.getAttachments,
-                ewsCredentials: {
-                    attachmentToken: data,
-                    ewsId: currentItemService.getItemId(),
-                    ewsUrl: currentItemService.getEwsUrl()
+                Note: note,
+                Attachments: $scope.getAttachments.map(function(attachment) {
+                    return {
+                        Id: attachment.id,
+                        Name: attachment.name,
+                        AttachmentType: attachment.attachmentType,
+                        ContentType: attachment.contentType,
+                        IsInline: attachment.isInline
+                    };
+                }),
+                EwsCredentials: {
+                    AttachmentToken: data,
+                    EwsId: currentItemService.getItemId(),
+                    EwsUrl: currentItemService.getEwsUrl()
                 }
             }
 
@@ -94,8 +101,8 @@
 
 
         $scope.update = function() {
-            currentItemService.getCallbackTokenAsync()
-                .done(updateEntityAsync(result));
+            currentItemService.getTokenAsync()
+                .then(updateEntityAsync);
         };
     }
 
