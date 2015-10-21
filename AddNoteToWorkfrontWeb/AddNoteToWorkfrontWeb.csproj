@@ -97,6 +97,7 @@
     <Content Include="AppRead\Content\privateSwitch.css" />
     <Content Include="AppRead\Controllers\login.controller.js" />
     <Content Include="AppRead\Controllers\update.controller.js" />
+    <Content Include="AppRead\Controllers\updated.controller.js" />
     <Content Include="AppRead\Images\Locked24.png" />
     <Content Include="AppRead\Images\Unlocked24.png" />
     <Content Include="AppRead\Index.html" />
@@ -109,7 +110,7 @@
     <Content Include="AppRead\Services\entityService.js" />
     <Content Include="AppRead\Services\loginService.js" />
     <Content Include="AppRead\Templates\Login\login.view.html" />
-    <Content Include="AppRead\Templates\modalContainer.html" />
+    <Content Include="AppRead\Templates\Updated\updated.view.html" />
     <Content Include="AppRead\Templates\Update\asyncTemplate.html" />
     <Content Include="AppRead\Templates\Update\popupTemplate.html" />
     <Content Include="AppRead\Templates\Update\update.view.html" />
@@ -400,6 +401,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\Extensions.cs" />
     <Compile Include="Controllers\GetController.cs" />
     <Compile Include="Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="Global.asax.cs">

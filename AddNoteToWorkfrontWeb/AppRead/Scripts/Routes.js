@@ -11,6 +11,15 @@
                 templateUrl: 'templates/update/update.view.html',
                 controller: 'UpdateController'
             })
+            .when('/updated', {
+                templateUrl: 'templates/updated/updated.view.html',
+                controller: 'UpdatedController',
+                resolve: {
+                    entityObject: function (entityService) {
+                        return entityService.getObject;
+                    }
+                }
+            })
             .otherwise({ redirectTo: '/update' });
     }
 

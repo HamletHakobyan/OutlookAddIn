@@ -56,14 +56,22 @@
             return defered.promise;
         };
 
+        var entityObject;
+
         var updateEntity = function (updateData) {
+            var code = updateData.Note.NoteObjCode;
+            entityObject = {
+                id: updateData.Note.ObjID,
+                objCode: code === 'PROJ' ? 'project' :
+                    code === 'TASK' ? 'task' : 'issue',
+                host: $.cookie('workfront-host')
+            }
             var data = $.param(updateData);
-            $http.post('../../api/get/updateEntity', data)
-                .then(function(response) {
+            return $http.post('../../api/get/updateEntity', data);
+        }
 
-                }, function(error) {
-
-                });
+        var getObject = function() {
+            return entityObject;
         }
 
         // return service
@@ -71,6 +79,7 @@
 
         service.getEntities = getEntities;
         service.updateEntity = updateEntity;
+        service.getObject = getObject;
         return service;
     }
 

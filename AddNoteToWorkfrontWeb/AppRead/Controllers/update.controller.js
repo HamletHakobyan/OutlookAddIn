@@ -61,7 +61,7 @@
             $scope.getBody = buildUpdate(data);
         });
 
-        $scope.isPrivate = true;
+        $scope.isPrivate = false;
 
         function updateEntityAsync(data) {
             var note = {
@@ -92,11 +92,12 @@
             }
 
             entityService.updateEntity(fullNote)
-                .done(function(respnse) {
+                .then(function(respnse) {
+                        $location.path('/updated');
+                    },
+                    function(error) {
 
-                }).fail(function(error) {
-
-                });
+                    });
         };
 
 
