@@ -5,8 +5,8 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Workfront Inc.</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Update in Workfront" />
-  <Description DefaultValue="This Mail Add-In for Outlook allows to add new update to Workfront update thread using information from e-mail."/>
+  <DisplayName DefaultValue="Update Workfront from E-mail" />
+  <Description DefaultValue="This Outlook add-In allows to add new update to Workfront update thread using information from current e-mail."/>
   <Hosts>
     <Host Name="Mailbox" />
   </Hosts>
@@ -32,7 +32,7 @@
   </FormSettings>
   <Permissions>ReadWriteMailbox</Permissions>
   <Rule xsi:type="RuleCollection" Mode="And">
-    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
-  </Rule>
+      <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+    </Rule>
   <DisableEntityHighlighting>false</DisableEntityHighlighting>
 </OfficeApp>

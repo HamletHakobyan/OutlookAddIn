@@ -118,6 +118,8 @@
     <Content Include="AppRead\Images\logo-workfront.png" />
     <Content Include="AppRead\Images\Workfront.png" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\workfront - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\workfront - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
