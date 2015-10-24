@@ -4,16 +4,20 @@
     function currentItemService($q) {
 
         function parseEmail(value) {
+            var m = 'http://schemas.microsoft.com/exchange/services/2006/messages';
+            var t = 'http://schemas.microsoft.com/exchange/services/2006/types';
             var email = {};
             var xmlDoc = $.parseXML(value);
-            var message = $("m\\:Items>t\\:Message", xmlDoc);
-            email.subject = $("t\\:Subject", message).text();
-            email.body = $("t\\:Body", message).text();
-            email.date = $("t\\:DateTimeSent", message).text();
-            var mailBox = $("t\\:From>t\\:Mailbox", message);
+            var message = xmlDoc.getElementsByTagNameNS(m, 'Items')[0]
+                .getElementsByTagNameNS(t, 'Message')[0];
+            email.subject = message.getElementsByTagNameNS(t, 'Subject')[0].textContent;
+            email.body = message.getElementsByTagNameNS(t, 'Body')[0].textContent;
+            email.date = message.getElementsByTagNameNS(t, 'DateTimeSent')[0].textContent;
+            var mailBox = message.getElementsByTagNameNS(t, 'From')[0]
+                .getElementsByTagNameNS(t, 'Mailbox')[0];
             email.mailbox = {};
-            email.mailbox.name = $("t\\:Name", mailBox).text();
-            email.mailbox.address = $("t\\:EmailAddress", mailBox).text();
+            email.mailbox.name = mailBox.getElementsByTagNameNS(t, 'Name')[0].textContent;
+            email.mailbox.address = mailBox.getElementsByTagNameNS(t, 'EmailAddress')[0].textContent;
             return email;
         };
 
