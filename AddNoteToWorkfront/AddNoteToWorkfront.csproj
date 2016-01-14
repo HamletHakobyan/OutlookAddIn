@@ -44,11 +44,15 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="AddNoteToWorkfrontManifest\AddNoteToWorkfrontOriginal.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="AddNoteToWorkfrontManifest\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{43a181f7-4cbc-46eb-86a9-6359d277cb91}</SharePointProjectItemId>
     </None>
     <Content Include="AddNoteToWorkfrontManifest\AddNoteToWorkfront.xml">
       <OpcRelationship>manifest-oemanifest</OpcRelationship>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="app.config" />
   </ItemGroup>
@@ -67,5 +71,25 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugL|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugL\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
   <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+  <PropertyGroup>
+    <PreBuildEvent>if $(ConfigurationName) == DebugL d:\tools\XmlPreprocess.exe /i "$(ProjectDir)AddNoteToWorkfrontManifest\AddNoteToWorkfrontOriginal.xml" /o "$(ProjectDir)AddNoteToWorkfrontManifest\AddNoteToWorkfront.xml" /d debug
+if not $(ConfigurationName) == DebugL d:\tools\XmlPreprocess.exe /i "$(ProjectDir)AddNoteToWorkfrontManifest\AddNoteToWorkfrontOriginal.xml" /o "$(ProjectDir)AddNoteToWorkfrontManifest\AddNoteToWorkfront.xml" /d notdebug</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent></PostBuildEvent>
+  </PropertyGroup>
 </Project>

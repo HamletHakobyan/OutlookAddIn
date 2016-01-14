@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="MailApp">
   <Id>C205EE7E-A2B0-4935-8F34-2507A5A384B8</Id>
@@ -8,7 +8,7 @@
   <!-- ifdef ${debug} -->
   <!-- <DisplayName DefaultValue="Update in Workfront L" /> -->
   <!-- else -->
-  <DisplayName DefaultValue="Update in Workfront L" />
+  <DisplayName DefaultValue="Update in Workfront R" />
   <!-- endif -->
   <Description DefaultValue="This Outlook add-In allows to add new update to Workfront update thread using information from current e-mail."/>
   <Hosts>
@@ -25,7 +25,7 @@
         <!-- ifdef ${debug} -->
         <!-- <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/> -->
         <!-- else -->
-        <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/>
+        <SourceLocation DefaultValue="https://workfront.azurewebsites.net/AppRead/Index.html"/>
         <!-- endif -->
         <RequestedHeight>450</RequestedHeight>
       </DesktopSettings>
@@ -33,7 +33,7 @@
         <!-- ifdef ${debug} -->
         <!-- <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/> -->
         <!-- else -->
-        <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/>
+        <SourceLocation DefaultValue="https://workfront.azurewebsites.net/AppRead/Index.html"/>
         <!-- endif -->
         <RequestedHeight>450</RequestedHeight>
       </TabletSettings>
@@ -41,7 +41,7 @@
         <!-- ifdef ${debug} -->
         <!-- <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/> -->
         <!-- else -->
-        <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/>
+        <SourceLocation DefaultValue="https://workfront.azurewebsites.net/AppRead/Index.html"/>
         <!-- endif -->
       </PhoneSettings>
     </Form>

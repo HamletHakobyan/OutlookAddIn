@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
-using TPL = System.Threading.Tasks;
 using System.Web.Http;
 using AddNoteToWorkfrontWeb.Extensions;
 using AddNoteToWorkfrontWeb.Utils;
@@ -13,12 +12,12 @@ using AtTask.OutlookAddIn.Assets;
 using AtTask.OutlookAddIn.Domain.Model;
 using AtTask.OutlookAddIn.StreamApi;
 using AtTask.OutlookAddIn.StreamApi.Connector.Service;
-using Microsoft.Exchange.WebServices.Autodiscover;
 using Microsoft.Exchange.WebServices.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Workfront.OutlookAddIn.Infrastructure;
 using Task = AtTask.OutlookAddIn.Domain.Model.Task;
+using TPL = System.Threading.Tasks;
 
 namespace AddNoteToWorkfrontWeb.Controllers
 {
@@ -108,7 +107,7 @@ namespace AddNoteToWorkfrontWeb.Controllers
 
                 await connector.UploadDocsAsync(updateEntity, handles, CancellationToken.None);
 
-                return (EntityBase)newNote;
+                return newNote;
 
             }
             catch (Exception e)
@@ -179,9 +178,12 @@ namespace AddNoteToWorkfrontWeb.Controllers
 
         private async TPL.Task<List<FileHandle>> AttachmentHandles(EwsCredentials credentials, List<AttachmentInfo> attachmentInfos)
         {
-            var service = new ExchangeService(ExchangeVersion.Exchange2013_SP1);
-            service.Url = new Uri(credentials.EwsUrl);
-            service.Credentials = new OAuthCredentials(credentials.AttachmentToken);
+            var service = new ExchangeService(ExchangeVersion.Exchange2013_SP1)
+            {
+                Url = new Uri(credentials.EwsUrl),
+                Credentials = new OAuthCredentials(credentials.AttachmentToken)
+            };
+
             var itemId = new ItemId(credentials.EwsId);
             var tasks = GetAttachmentsFromEmail(service, itemId)
                 .Where(s => attachmentInfos.Any(a => a.Id == s.Id))
@@ -199,8 +201,7 @@ namespace AddNoteToWorkfrontWeb.Controllers
 
         private async TPL.Task<FileHandle> UploadEmlAsync(ExchangeService service, ItemId itemId)
         {
-            var mimeContent = GetMimeContent(service, itemId);
-            using (var memoryStream = new MemoryStream(mimeContent.Content))
+            using (var memoryStream = GetMimeContent(service, itemId))
             {
                 var attachmentData = new AttachmentData
                 {
@@ -254,7 +255,7 @@ namespace AddNoteToWorkfrontWeb.Controllers
             return (string)jsonObject["data"]["handle"];
         }
 
-        public MimeContent GetMimeContent(ExchangeService service, ItemId itemId)
+        public Stream GetMimeContent(ExchangeService service, ItemId itemId)
         {
             EmailMessage message = EmailMessage.Bind(service, itemId);
 
@@ -262,7 +263,7 @@ namespace AddNoteToWorkfrontWeb.Controllers
             // This method results in an GetItem call to EWS.
             message.Load(new PropertySet(ItemSchema.MimeContent));
 
-            return message.MimeContent;
+            return new MemoryStream(message.MimeContent.Content);
         }
 
         public static IEnumerable<FileAttachment> GetAttachmentsFromEmail(ExchangeService service, ItemId itemId)

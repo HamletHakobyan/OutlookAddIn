@@ -22,10 +22,10 @@ namespace AddNoteToWorkfrontWeb.Controllers
             }
         }
 
-        public static async System.Threading.Tasks.Task UploadDocsAsync<T>(this IStreamApiConnector connector, T entity, IEnumerable<FileHandle> fileHanfles, CancellationToken token) where T : EntityBase
+        public static async System.Threading.Tasks.Task UploadDocsAsync<T>(this IStreamApiConnector connector, T entity, IEnumerable<FileHandle> fileHandles, CancellationToken token) where T : EntityBase
         {
             var tasks = new List<Task<Document>>();
-            foreach (var fileHande in fileHanfles)
+            foreach (var fileHande in fileHandles)
             {
                 Document document = PrepareDocument(entity, fileHande.Handle, fileHande.FileName);
                 document.ObjID = entity.ID;

@@ -36,6 +36,15 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\WorkfrontSnk.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugL|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugL\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -47,7 +56,6 @@
   <ItemGroup>
     <Compile Include="AttachmentData.cs" />
     <Compile Include="AtTaskException.cs" />
-    <Compile Include="ClosableViewModelBase.cs" />
     <Compile Include="ConnectionSettings.cs" />
     <Compile Include="FileUploadService.cs" />
     <Compile Include="FocusExtension.cs" />
@@ -55,14 +63,11 @@
     <Compile Include="ISearchService.cs" />
     <Compile Include="IServiceLocator.cs" />
     <Compile Include="IUploadService.cs" />
-    <Compile Include="LoadableViewModel.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="NotifyTaskCompletion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelayCommand.cs" />
     <Compile Include="ReportableStream.cs" />
     <Compile Include="ServiceLocator.cs" />
-    <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AtTask.OutlookAddIn.Assets\AtTask.OutlookAddIn.Assets.csproj">
