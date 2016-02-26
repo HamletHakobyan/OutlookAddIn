@@ -3,21 +3,14 @@
 
     function loginService($http) {
 
-        function doLogin(connectionInfo) {
+        this.doLogin = function (connectionInfo) {
             var data = $.param(connectionInfo);
             return $http.post("../../api/authentication/login", data);
         }
-
-        // return service
-        var service = {};
-
-        service.doLogin = doLogin;
-        return service;
     };
 
     angular.module('workfront-addin')
-        .factory('loginService', loginService);
+        .service('loginService', loginService);
     loginService.$inject = ['$http'];
-
 
 })(window.angular);

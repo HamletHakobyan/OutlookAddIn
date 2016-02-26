@@ -25,7 +25,7 @@
         <!-- ifdef ${debug} -->
         <!-- <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/> -->
         <!-- else -->
-        <SourceLocation DefaultValue="https://workfront.azurewebsites.net/AppRead/Index.html"/>
+        <SourceLocation DefaultValue="https://o365.attask-ondemand.com/AppRead/Index.html"/>
         <!-- endif -->
         <RequestedHeight>450</RequestedHeight>
       </DesktopSettings>
@@ -33,7 +33,7 @@
         <!-- ifdef ${debug} -->
         <!-- <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/> -->
         <!-- else -->
-        <SourceLocation DefaultValue="https://workfront.azurewebsites.net/AppRead/Index.html"/>
+        <SourceLocation DefaultValue="https://o365.attask-ondemand.com/AppRead/Index.html"/>
         <!-- endif -->
         <RequestedHeight>450</RequestedHeight>
       </TabletSettings>
@@ -41,7 +41,7 @@
         <!-- ifdef ${debug} -->
         <!-- <SourceLocation DefaultValue="https://localhost:44300/AppRead/Index.html"/> -->
         <!-- else -->
-        <SourceLocation DefaultValue="https://workfront.azurewebsites.net/AppRead/Index.html"/>
+        <SourceLocation DefaultValue="https://o365.attask-ondemand.com/AppRead/Index.html"/>
         <!-- endif -->
       </PhoneSettings>
     </Form>

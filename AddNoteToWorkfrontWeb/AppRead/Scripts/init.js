@@ -1,12 +1,12 @@
 ﻿/// <reference path="../App.js" />
 
-(function() {
+(function(angular, office) {
     "use strict";
 
     var host;
 
     function getHost() {
-        var mailbox = Office.context.mailbox;
+        var mailbox = office.context.mailbox;
         var item = mailbox.item;
         var matches = item.getRegExMatchesByName("CommentOnProject");
         var match = matches[0];
@@ -33,16 +33,16 @@
     }
 
     function getRequestDataPromise() {
-        var itemId = Office.context.mailbox.item.itemId;
-        var ewsUrl = Office.context.mailbox.ewsUrl;
+        var itemId = office.context.mailbox.item.itemId;
+        var ewsUrl = office.context.mailbox.ewsUrl;
 
         var getCallbackTokenAsync = $.defer();
         var getUserIdentityTokenAsync = $.defer();
 
-        Office.context.mailbox.getCallbackTokenAsync(function(data) {
+        office.context.mailbox.getCallbackTokenAsync(function(data) {
             getCallbackTokenAsync.resolve(data);
         });
-        Office.context.mailbox.getUserIdentityTokenAsync(function(data) {
+        office.context.mailbox.getUserIdentityTokenAsync(function(data) {
             getUserIdentityTokenAsync.resolve(data);
         });
 
@@ -77,7 +77,7 @@
     }
 
     function getHeaders() {
-        var mailbox = Office.context.mailbox;
+        var mailbox = office.context.mailbox;
         var itemId = mailbox.item.itemId;
         var headersRequest = getHeadersRequest(itemId);
         var envelope = getSoapEnvelope(headersRequest);
@@ -139,10 +139,10 @@
     }
 
     // The Office initialize function must be run each time a new page is loaded
-    Office.initialize = function(reason) {
+    office.initialize = function(reason) {
 
-        $('#addin').ready(function() {
-            angular.bootstrap(document, ['workfront-addin']);
+        $(document).ready(function() {
+            angular.bootstrap(document.body, ['workfront-addin']);
         });
     };
-})();
+})(window.angular, window.Office);

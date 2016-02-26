@@ -1,10 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--Published:920014D5-5E5A-442D-934A-437E4FB0A4DA-->
-<App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest" Name="AddNoteToWorkfront" ProductID="{56402649-c85f-4c50-b2c6-e12e15a0c589}" Version="1.0.0.0" SharePointMinVersion="15.0.0.0">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
+     Name="AddNoteToWorkfront"
+     ProductID="{6166dd97-1439-4f0f-889e-206e5358010c}"
+     Version="1.0.0.0"
+     SharePointMinVersion="15.0.0.0"
+>
   <Properties>
     <Title>AddNoteToWorkfront</Title>
     <StartPage>http://go.microsoft.com/fwlink/?LinkID=278993</StartPage>
   </Properties>
+
   <AppPrincipal>
     <Internal />
   </AppPrincipal>
